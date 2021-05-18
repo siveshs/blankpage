@@ -1,0 +1,37 @@
+Things to do:
+
+[ ] user interactions:
+  [x] creating a textNode that can be selected and deselected
+  [x] creating a general purpose click, doubleclick and move mechanism
+  [x] double-click to create a text node at that location
+  [x] presseing 'delete' will remove any added nodes
+  [ ] allow each node to be re-sized
+  [ ] making the text node editable properly
+
+[ ] creating the data model
+  [x] textNodes as array of nodes
+  [ ] textNodes as a tree?
+
+[ ] enable persistence
+  [ ] save to local storage
+  [ ] enable downloading json
+  [ ] enable opening a json file
+  [ ] ask to save the current file if there are any nodes
+
+[ ] infiniteCanvas (mostly CSS?)
+  [ ] start with a larger but fixed size canvas?
+  [ ] enable scrolling
+
+[ ] enable joining nodes together using lines
+  [ ] separate tool?
+  [ ] what will the data model look like?
+
+[ ] enable alignment of textNodes
+  [ ] align left, right and center
+  [ ]
+
+
+Goal is to get to a working prototype as quickly as possible
+Be able to add nodes, arrange them and make them persist
+then make them larger
+then allow save/open
