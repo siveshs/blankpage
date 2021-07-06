@@ -15,7 +15,7 @@ TxtNode2.findIdFromDOMId = function(DOMId) {
 // CONSTRUCTOR & related functions
 // -------------------------------
 
-function TxtNode2(x,y) {
+function TxtNode2(x,y,parentGraph) {
   this.text = "lorem ipsum something blah";
   this.x = x;
   this.y = y;
@@ -23,7 +23,7 @@ function TxtNode2(x,y) {
   this.height = 20;
   this.state = NODE_STATE_DEFAULT;
   this.id = TxtNode2._currentCount ++;
-  // this.parentGraph = parentGraph;
+  this.parentGraph = parentGraph;
 }
 
 // -----------------
@@ -65,7 +65,7 @@ TxtNode2.prototype.addEventHandlers = function(newDOMElem) {
     const targetNodeId = TxtNode2.findIdFromDOMId(event.target.id);
 
     // NEED TO REWRITE THIS LINE.nodeGraph IS HARDCODED
-    const targetNode = nodeGraph.findNodeFromNodeId(targetNodeId);
+    const targetNode = this.parentGraph.findNodeFromNodeId(targetNodeId);
 
     const initialMouseOffsetX = event.pageX - targetElem.offsetLeft;
     const initialMouseOffsetY = event.pageY - targetElem.offsetTop;
@@ -109,7 +109,7 @@ TxtNode2.prototype.addEventHandlers = function(newDOMElem) {
       }
 
       document.onmouseup = () => {
-        console.log('mouse up');
+        // console.log('mouse up');
         document.onmousemove = null;
         document.onmouseup = null;
       };
@@ -118,8 +118,6 @@ TxtNode2.prototype.addEventHandlers = function(newDOMElem) {
       }
   };
 }
-
-
 
 TxtNode2.prototype.matchNodeStateToDOMElem = function(newDOMElem) {
   newDOMElem.innerHTML = this.text;

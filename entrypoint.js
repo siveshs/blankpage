@@ -43,7 +43,9 @@ document.addEventListener('keydown', function (event) {
 // when user clicks 'Save', download json file
 const saveButton = document.getElementById("saveButton");
 saveButton.addEventListener('click', function (event) {
-  const jsonToDownload = JSON.stringify(nodeGraph);
+  const jsonToDownload = JSON.stringify(nodeGraph, (key,value) => {
+    return (key=="parentGraph") ? undefined : value;
+  });
   const blob = new Blob([jsonToDownload],{type:"application/json"});
 
   const tempLink = document.createElement("a");
@@ -64,8 +66,7 @@ loadButton.addEventListener('click', function (event) {
     const reader = new FileReader();
     reader.readAsText(file);
     reader.onload = () => {
-      nodeGraph = JSON.parse(reader.result);
-      console.log(reader.result);
+      nodeGraph.loadFromJSON(reader.result);
     };
     reader.onerror = () => {
       console.error(reader.error);
@@ -83,4 +84,17 @@ newButton.addEventListener('click', function(event) {
     field.removeChild(field.lastElementChild);
   }
   nodeGraph = new TxtNodeGraph("field");
+});
+
+// when user clicks about, display a new modal view with info
+const aboutButton = document.getElementById("aboutButton");
+const aboutModal = document.getElementById("modal-background");
+aboutButton.addEventListener('click', function(event) {
+  aboutModal.style.display="inherit";
+  aboutModal.onclick = (event) => {
+    if(event.target === aboutModal) {
+      aboutModal.style.display="none";
+      aboutModal.onclick = null;
+    }
+  };
 });

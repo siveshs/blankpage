@@ -4,9 +4,9 @@ Things to do:
   [x] creating a textNode that can be selected and deselected
   [x] creating a general purpose click, doubleclick and move mechanism
   [x] double-click to create a text node at that location
-  [x] presseing 'delete' will remove any added nodes
+  [x] pressing 'delete' will remove any added nodes
   [ ] allow each node to be re-sized
-  [ ] making the text node editable properly
+  [x] making the text node editable properly
 
 [ ] creating the data model
   [x] textNodes as array of nodes
@@ -14,8 +14,8 @@ Things to do:
 
 [ ] enable persistence
   [ ] save to local storage
-  [ ] enable downloading json
-  [ ] enable opening a json file
+  [x] enable downloading json
+  [x] enable opening a json file
   [ ] ask to save the current file if there are any nodes
 
 [ ] infiniteCanvas (mostly CSS?)
@@ -28,8 +28,6 @@ Things to do:
 
 [ ] enable alignment of textNodes
   [ ] align left, right and center
-  [ ]
-
 
 Goal is to get to a working prototype as quickly as possible
 Be able to add nodes, arrange them and make them persist

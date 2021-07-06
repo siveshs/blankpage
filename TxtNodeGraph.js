@@ -35,8 +35,11 @@ TxtNodeGraph.prototype.findNodeIndexFromNodeId = function(nodeId) {
   }
 };
 
-TxtNodeGraph.prototype.addNode = function(x,y) {
+TxtNodeGraph.prototype.addNode = function(x,y,text) {
   const newTxtNode = new TxtNode2(x,y,this);
+  if(text != undefined) {
+    newTxtNode.text = text;
+  }
   this.nodes.push(newTxtNode);
   newTxtNode.appendToDOMId(this.canvasId);
 }
@@ -61,7 +64,7 @@ TxtNodeGraph.prototype.addEventHandlersToCanvas = function (canvasId){
       if(mouseDownCounter === 1) {
         canvas.onmouseup = () => {
             timeoutID = setTimeout(()=> {
-            console.log('single click in canvas');
+            // console.log('single click in canvas');
             thisNodeGraph.nodes.forEach((node, index) => {
               const nodeDOMId = "node" + node.id;
               const nodeDOMElem = document.getElementById(nodeDOMId);
@@ -83,3 +86,24 @@ TxtNodeGraph.prototype.addEventHandlersToCanvas = function (canvasId){
     }
   };
 }
+
+TxtNodeGraph.prototype.loadFromJSON = function (jsonData) {
+  parsedJson = JSON.parse(jsonData);
+  console.log(parsedJson);
+  // console.log(this);
+  // remove all nodes
+  for (let i=this.nodes.length-1;i>=0;i--) {
+    this.removeNode(this.nodes[i].id);
+  }
+  // remove all edges
+
+  // add new nodes
+  for(let eachNode of parsedJson.nodes) {
+    this.addNode(eachNode.x,eachNode.y,eachNode.text);
+  }
+
+  // add new edges
+
+
+
+};
